@@ -1,47 +1,45 @@
-import { React, useEffect, useState } from "react"
+import { React, useState } from "react"
 import { Button, Form } from "react-bootstrap"
 
-const URL = "https://www.omdbapi.com/?s=narnia&plot=full&apikey=691f9d40"
-const reqData = () => fetch(URL).then((res) => res.json())
-
 function App() {
-    const [avengers, setAvengers] = useState([])
     const [film, setFilm] = useState("")
-
-    useEffect(() => {
-        const fetchMovie = () => {
-            reqData()
-                .then((res) => {
-                    setAvengers(res.Search)
-                })
-                .catch((err) => console.log(err))
-        }
-        fetchMovie()
-    }, [])
-
-    console.log(avengers)
+    const [movies, setMovies] = useState([])
 
     function buttonSearch(e) {
         e.preventDefault()
-        console.log(film)
+
+        const fetchMovie = () => {
+            const URL = `https://www.omdbapi.com/?s=${film}&plot=full&apikey=691f9d40`
+            fetch(URL)
+                .then((res) => res.json())
+                .then((res) => {
+                    setMovies(res.Search)
+                })
+                .catch((err) => console.log(err))
+        }
+
+        fetchMovie()
     }
 
     return (
         <div className="App">
-            <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+            <Form onSubmit={buttonSearch}>
+                <Form.Group className="mb-3 d-flex">
+                    <Form.Control
+                        className="w-25"
+                        type="text"
+                        placeholder="Search"
+                        onChange={(e) => setFilm(e.target.value)}
+                    />
+                    <Button variant="primary" type="submit" className="h-25">
+                        Search
+                    </Button>
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Search
-                </Button>
             </Form>
 
-            {avengers.map((movies) => (
+            {movies.map((movies) => (
                 <>
                     <li>{movies.Title}</li>
-                    <li>{movies.Plot}</li>
                 </>
             ))}
         </div>

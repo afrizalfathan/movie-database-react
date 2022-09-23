@@ -1,12 +1,6 @@
 import { Card, Button } from "react-bootstrap"
 
-const Cards = ({
-    movies,
-    handleMovieDetail,
-    show,
-    handleClose,
-    moviesDetail,
-}) => {
+const Cards = ({ movies, handleMovieDetail }) => {
     return (
         <>
             <div className="card-container d-flex">
@@ -17,14 +11,16 @@ const Cards = ({
                         <Card.Text>{movies.Plot}</Card.Text>
                         <Button
                             variant="primary"
-                            onClick={handleMovieDetail.bind(this, movies)}
+                            onClick={handleMovieDetail.bind(
+                                this,
+                                movies.imdbID
+                            )}
                         >
                             Go somewhere
                         </Button>
                     </Card.Body>
                 </Card>
             </div>
-
         </>
     )
 }

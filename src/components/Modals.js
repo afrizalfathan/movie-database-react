@@ -13,15 +13,27 @@ const Modals = ({ show, handleClose, moviesDetail }) => {
                         style={{ marginRight: `30px` }}
                     />
                     <div className="detail-movies pl-4">
-                        <p>{moviesDetail.Plot}</p>
+                        <p>
+                            <b>Actors :</b> {moviesDetail.Actors}
+                        </p>
+                        <p>
+                            <b>Released :</b> {moviesDetail.Released}
+                        </p>
+                        <p>
+                            <b>Genre :</b> {moviesDetail.Genre}
+                        </p>
+                        <p>
+                            <b>Plot : </b>
+                            {moviesDetail.Plot}
+                        </p>
+                        <p>
+                            <b>Metascore : </b> {moviesDetail.Metascore}
+                        </p>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>

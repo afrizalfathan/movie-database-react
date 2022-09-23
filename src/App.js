@@ -1,6 +1,7 @@
 import { React, useState } from "react"
 import { Button, Form } from "react-bootstrap"
 import Cards from "./components/Cards"
+import "./style/style.css"
 import Modals from "./components/Modals"
 
 function App() {
@@ -23,17 +24,18 @@ function App() {
                 .then((res) => {
                     setMovies(res.Search)
                 })
-                .then((res) => console.log(movies))
                 .catch((err) => console.log(err))
         }
 
         searchMovie()
     }
 
+    // fungsi untuk mengambil data film yang detail
+
     const handleMovieDetail = (moviesId) => {
         handleShow()
         const detailMovie = () => {
-            const URL = `https://www.omdbapi.com/?i=${moviesId}&apikey=691f9d40&plot=full`
+            const URL = `https://www.omdbapi.com/?i=${moviesId}&apikey=691f9d40`
             fetch(URL)
                 .then((res) => res.json())
                 .then((res) => {
@@ -47,11 +49,12 @@ function App() {
 
     return (
         <div className="App">
+            <h2 style={{ margin: `1% 0 1% 10%` }}>Movie Database</h2>
             <div className="form-container">
                 <Form onSubmit={buttonSearch}>
                     <Form.Group
                         className="d-flex"
-                        style={{ width: `40 rem`, marginLeft: `10%` }}
+                        style={{ width: 35 + `rem`, margin: `0 0 2% 10%` }}
                     >
                         <Form.Control
                             type="text"
@@ -68,9 +71,10 @@ function App() {
                     </Form.Group>
                 </Form>
             </div>
-            <div>
+            <div className="movies-container">
                 {movies.map((movies) => (
                     <Cards
+                        key={movies.imdbID}
                         movies={movies}
                         handleMovieDetail={handleMovieDetail}
                         show={show}

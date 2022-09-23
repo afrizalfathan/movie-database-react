@@ -8,7 +8,8 @@ const Cards = ({ movies, handleMovieDetail }) => {
                     <Card.Img variant="top" src={movies.Poster} />
                     <Card.Body>
                         <Card.Title>{movies.Title}</Card.Title>
-                        <Card.Text>{movies.Plot}</Card.Text>
+                        <Card.Text>{movies.Year}</Card.Text>
+                        <Card.Text>{movies.Type}</Card.Text>
                         <Button
                             variant="primary"
                             onClick={handleMovieDetail.bind(
@@ -16,7 +17,7 @@ const Cards = ({ movies, handleMovieDetail }) => {
                                 movies.imdbID
                             )}
                         >
-                            Go somewhere
+                            Show Detail
                         </Button>
                     </Card.Body>
                 </Card>

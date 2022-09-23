@@ -1,5 +1,6 @@
 import { React, useState } from "react"
 import { Button, Form } from "react-bootstrap"
+import Cards from "./components/Cards"
 
 function App() {
     const [film, setFilm] = useState("")
@@ -38,9 +39,7 @@ function App() {
             </Form>
 
             {movies.map((movies) => (
-                <>
-                    <li>{movies.Title}</li>
-                </>
+                <Cards movies={movies}></Cards>
             ))}
         </div>
     )
